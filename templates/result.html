@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FitBuddy - Your Plan</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 55% 35%,
+                    #6f13c5 0%,
+                    #46146f 30%,
+                    #241233 55%,
+                    #0b0b0e 85%
+                );
+
+            background-attachment: fixed;
+
+            color: white;
+
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+
+            background: rgba(18, 18, 24, 0.88);
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.45),
+                0 0 30px rgba(123, 44, 255, 0.18);
+
+            backdrop-filter: blur(12px);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 5px;
+            color: #cfcfcf;
+        }
+
+        h3 {
+            color: #d7b6ff;
+        }
+
+        .info {
+            margin-top: 30px;
+            padding: 20px;
+
+            background: rgba(255, 255, 255, 0.06);
+
+            border-radius: 12px;
+
+            border: 1px solid rgba(255, 255, 255, 0.10);
+
+            line-height: 1.8;
+        }
+
+        .plan,
+        .nutrition,
+        .feedback {
+            margin-top: 25px;
+            padding: 25px;
+
+            background: rgba(255, 255, 255, 0.07);
+
+            border: 1px solid rgba(255, 255, 255, 0.10);
+
+            border-radius: 14px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+
+            font-family: Arial, sans-serif;
+            line-height: 1.7;
+
+            color: #eeeeee;
+        }
+
+        .nutrition {
+            line-height: 1.7;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+
+            box-sizing: border-box;
+
+            background: rgba(255, 255, 255, 0.10);
+
+            color: white;
+
+            border: 1px solid rgba(255, 255, 255, 0.20);
+
+            border-radius: 8px;
+
+            resize: vertical;
+
+            font-family: Arial, sans-serif;
+
+            outline: none;
+        }
+
+        textarea::placeholder {
+            color: #bbbbbb;
+        }
+
+        textarea:focus {
+            border-color: #9b5cff;
+
+            box-shadow:
+                0 0 0 2px rgba(155, 92, 255, 0.20);
+        }
+
+        button {
+            margin-top: 15px;
+
+            padding: 12px 22px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #7b2cff;
+
+            color: white;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #914dff;
+
+            box-shadow:
+                0 0 18px rgba(145, 77, 255, 0.45);
+        }
+
+        .links {
+            margin-top: 30px;
+
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .link-button {
+            text-decoration: none;
+
+            padding: 11px 18px;
+
+            border-radius: 8px;
+
+            background: rgba(255, 255, 255, 0.10);
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            color: white;
+
+            transition: 0.2s;
+        }
+
+        .link-button:hover {
+            background: #7b2cff;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .links {
+                flex-direction: column;
+            }
+
+            .link-button {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>FitBuddy</h1>
+
+    <h2>Your Personal Fitness Plan</h2>
+
+
+    <div class="info">
+
+        <p>
+            <b>Name:</b>
+            {{ username }}
+        </p>
+
+        <p>
+            <b>User ID:</b>
+            {{ user_id }}
+        </p>
+
+        <p>
+            <b>Age:</b>
+            {{ age }}
+        </p>
+
+        <p>
+            <b>Weight:</b>
+            {{ weight }} kg
+        </p>
+
+        <p>
+            <b>Fitness Goal:</b>
+            {{ goal }}
+        </p>
+
+        <p>
+            <b>Workout Intensity:</b>
+            {{ intensity }}
+        </p>
+
+    </div>
+
+
+    <div class="plan">
+
+        {% if updated %}
+
+            <h3>
+                🔄 Your Updated 7-Day Workout Plan
+            </h3>
+
+        {% else %}
+
+            <h3>
+                🏋️ Your AI Generated 7-Day Workout Plan
+            </h3>
+
+        {% endif %}
+
+        <pre>{{ workout_plan }}</pre>
+
+    </div>
+
+
+    <div class="nutrition">
+
+        <h3>
+            🥗 Nutrition / Recovery Tip
+        </h3>
+
+        <p>
+            {{ nutrition_tip }}
+        </p>
+
+    </div>
+
+
+    <div class="feedback">
+
+        <h3>
+            💬 Update Your Workout Plan
+        </h3>
+
+        <p>
+            Tell FitBuddy what you would like to change.
+        </p>
+
+        <form
+            action="/submit-feedback"
+            method="post"
+        >
+
+            <input
+                type="hidden"
+                name="user_id"
+                value="{{ user_id }}"
+            >
+
+            <textarea
+                name="feedback"
+                rows="5"
+                placeholder="Example: Add more cardio and include one more recovery day"
+                required
+            ></textarea>
+
+            <button type="submit">
+                Update My Plan
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="links">
+
+        <a
+            class="link-button"
+            href="/"
+        >
+            ← Back to Home
+        </a>
+
+        <a
+            class="link-button"
+            href="/view-all-users"
+        >
+            👥 View All Users
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

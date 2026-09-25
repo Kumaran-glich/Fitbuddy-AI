@@ -1,0 +1,4 @@
+.env
+fitbuddy-env/
+__pycache__/
+fitbuddy.db

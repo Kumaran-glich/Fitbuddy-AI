@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FitBuddy - AI Fitness Plan Generator</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 55% 45%,
+                    #6f13c5 0%,
+                    #46146f 30%,
+                    #241233 55%,
+                    #0b0b0e 85%
+                );
+
+            background-attachment: fixed;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+        }
+
+        .container {
+            width: 400px;
+
+            background: rgba(18, 18, 24, 0.88);
+
+            padding: 30px;
+
+            border-radius: 18px;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.45),
+                0 0 30px rgba(123, 44, 255, 0.18);
+
+            backdrop-filter: blur(12px);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #cfcfcf;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 11px;
+            margin-top: 6px;
+
+            box-sizing: border-box;
+
+            background: rgba(255, 255, 255, 0.10);
+
+            color: white;
+
+            border: 1px solid rgba(255, 255, 255, 0.20);
+
+            border-radius: 7px;
+
+            outline: none;
+        }
+
+        input::placeholder {
+            color: #bdbdbd;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #9b5cff;
+
+            box-shadow:
+                0 0 0 2px rgba(155, 92, 255, 0.20);
+        }
+
+        option {
+            color: black;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 25px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #7b2cff;
+
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #914dff;
+
+            box-shadow:
+                0 0 18px rgba(145, 77, 255, 0.45);
+        }
+        .users-button {
+    display: block;
+    margin-top: 15px;
+    padding: 12px;
+
+    text-align: center;
+    text-decoration: none;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 8px;
+
+    color: white;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.users-button:hover {
+    background: #7b2cff;
+
+    box-shadow:
+        0 0 18px rgba(145, 77, 255, 0.45);
+}
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>FitBuddy</h1>
+
+    <p class="subtitle">
+        AI Fitness Plan Generator
+    </p>
+
+    <form action="/generate-workout" method="post">
+
+        <label>Name</label>
+
+        <input
+            type="text"
+            name="username"
+            placeholder="Enter your name"
+            required
+        >
+
+        <label>User ID</label>
+
+        <input
+            type="text"
+            name="user_id"
+            placeholder="Enter user ID"
+            required
+        >
+
+        <label>Age</label>
+
+        <input
+            type="number"
+            name="age"
+            placeholder="Enter your age"
+            required
+        >
+
+        <label>Weight (kg)</label>
+
+        <input
+            type="number"
+            name="weight"
+            step="0.1"
+            placeholder="Enter your weight"
+            required
+        >
+
+        <label>Fitness Goal</label>
+
+        <select name="goal" required>
+
+            <option value="">
+                Select your goal
+            </option>
+
+            <option value="Weight Loss">
+                Weight Loss
+            </option>
+
+            <option value="Muscle Gain">
+                Muscle Gain
+            </option>
+
+            <option value="General Wellness">
+                General Wellness
+            </option>
+
+            <option value="Flexibility">
+                Flexibility
+            </option>
+
+        </select>
+
+        <label>Workout Intensity</label>
+
+        <select name="intensity" required>
+
+            <option value="">
+                Select intensity
+            </option>
+
+            <option value="Low">
+                Low
+            </option>
+
+            <option value="Medium">
+                Medium
+            </option>
+
+            <option value="High">
+                High
+            </option>
+
+        </select>
+
+        <button type="submit">
+            Generate My Plan
+        </button>
+
+    </form>
+    <a href="/view-all-users" class="users-button">
+    👥 View All Users
+</a>
+
+</div>
+
+</body>
+</html>
